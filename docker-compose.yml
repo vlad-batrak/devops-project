@@ -1,0 +1,41 @@
+﻿version: '3.9'
+
+services:
+
+  db:
+    image: mysql:8.0.15
+    container_name: mysql_cont
+    volumes:
+      - ./db_data:/var/lib/mysql/
+      - ./code/db-dump:/docker-entrypoint-initdb.d
+    restart: always
+    # ports:
+    #   - '3306:3306'
+    env_file:
+      - .mysql.env
+
+
+  django:
+    build: .
+    image: django_app:0.1
+    container_name: django_app_cont
+    volumes:
+      - ./code:/web_app/code
+    ports:
+      - "80:8000"
+    restart: always
+    depends_on:
+      - db
+    entrypoint: /web_app/code/docker-entrypoint.sh
+    env_file:
+      - .django.env
+    # command: python manage.py runserver 0.0.0.0:8000
+    # healthcheck:
+    #     test: ["CMD", "curl", "-f", "http://db:3306"]
+    #     interval: 30s
+    #     timeout: 10s
+    #     retries: 5
+
+
+# volumes:
+#   db_data:

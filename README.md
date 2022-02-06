@@ -1,2 +1,3 @@
-# devops-project
-My final DevOps project for external course of EPAM University Program
+﻿# Final project of the EPAM external course
+## Based on ```simple-django-project``` by [Manisha-Bayya](https://github.com/Manisha-Bayya/simple-django-project.git)
+
