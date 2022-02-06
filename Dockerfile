@@ -11,7 +11,7 @@ COPY ./code/requirements.txt .
 
 RUN python3 -m pip install --upgrade pip
 
-# RUN python3 -m venv envs && . envs/bin/activate
+RUN python3 -m venv envs && . envs/bin/activate
 
 RUN pip install --no-cache -r requirements.txt \
     && apt-get -y autoclean \
